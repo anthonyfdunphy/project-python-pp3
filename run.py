@@ -1,92 +1,86 @@
-import gspread
-from google.oauth2.service_account import Credentials
-from pprint import pprint
+import curses 
+from random import randint
 
-SCOPE = [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive.file",
-    "https://www.googleapis.com/auth/drive"
-    ]
+#constants
 
-CREDS = Credentials.from_service_account_file('creds.json')
-SCOPED_CREDS = CREDS.with_scopes(SCOPE)
-GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('love_sandwiches')
+WINDOW_WIDTH = 60  # number of columns of window box 
+WINDOW_HEIGHT = 20 # number of rows of window box 
+'''
+Number of blocks in window per line = WINDOW_WIDTH -2. 
+Block x index ranges from 1 to WINDOW_WIDTH -2.
+Number of blocks in window per column = WINDOW_HEIGHT -2. 
+Block y index ranges from 1 to WINDOW_HEIGHT -2.
+'''
 
+# setup window
+curses.initscr()
+win = curses.newwin(WINDOW_HEIGHT, WINDOW_WIDTH, 0, 0) # rows, columns
+win.keypad(1)
+curses.noecho()
+curses.curs_set(0)
+win.border(0)
+win.nodelay(1) # -1
 
-def get_sales_data():
-    """
-    Get sales figures input from the user.
-    Run a while loop to collect a valid string of data from the user
-    via the terminal, which must be a string of 6 numbers separated
-    by commas. The loop will repeatedly request data, until it is valid.
-    """
-    while True:
-        print("Please enter sales data from the last market.")
-        print("Data should be six numbers, separated by commas.")
-        print("Example: 10,20,30,40,50,60\n")
+# snake and food
+snake = [(4, 4), (4, 3), (4, 2)]
+food = (6, 6)
 
-        data_str = input("Enter your data here: ")
+win.addch(food[0], food[1], '#')
+# game logic
+score = 0
 
-        sales_data = data_str.split(",")
+ESC = 27
+key = curses.KEY_RIGHT
 
-        if validate_data(sales_data):
-            print("Data is valid!")
-            break
+while key != ESC:
+    win.addstr(0, 2, 'Score ' + str(score) + ' ')
+    win.timeout(150 - (len(snake)) // 5 + len(snake)//10 % 120) # increase speed
 
-    return sales_data
+    prev_key = key
+    event = win.getch()
+    key = event if event != -1 else prev_key
 
+    if key not in [curses.KEY_LEFT, curses.KEY_RIGHT, curses.KEY_UP, curses.KEY_DOWN, ESC]:
+        key = prev_key
 
-def validate_data(values):
-    """
-    Inside the try, converts all string values into integers.
-    Raises ValueError if strings cannot be converted into int,
-    or if there aren't exactly 6 values.
-    """
-    try:
-        [int(value) for value in values]
-        if len(values) != 6:
-            raise ValueError(
-                f"Exactly 6 values required, you provided {len(values)}"
-            )
-    except ValueError as e:
-        print(f"Invalid data: {e}, please try again.\n")
-        return False
+    # calculate the next coordinates
+    y = snake[0][0]
+    x = snake[0][1]
+    if key == curses.KEY_DOWN:
+        y += 1
+    if key == curses.KEY_UP:
+        y -= 1
+    if key == curses.KEY_LEFT:
+        x -= 1
+    if key == curses.KEY_RIGHT:
+        x += 1
 
-    return True
+    snake.insert(0, (y, x)) # append O(n)
 
+    # check if we hit the border
+    if y == 0: break
+    if y == WINDOW_HEIGHT-1: break
+    if x == 0: break
+    if x == WINDOW_WIDTH -1: break
 
-def update_sales_worksheet(data):
-    """
-    Update sales worksheet, add new row with the list data provided
-    """
-    print("Updating sales worksheet...\n")
-    sales_worksheet = SHEET.worksheet("sales")
-    sales_worksheet.append_row(data)
-    print("Sales worksheet updated successfully.\n")
+    # if snake runs over itself
+    if snake[0] in snake[1:]: break
 
+    if snake[0] == food:
+        # eat the food
+        score += 1
+        food = ()
+        while food == ():
+            food = (randint(1,WINDOW_HEIGHT-2), randint(1,WINDOW_WIDTH -2))
+            if food in snake:
+                food = ()
+        win.addch(food[0], food[1], '#')
+    else:
+        # move snake
+        last = snake.pop()
+        win.addch(last[0], last[1], ' ')
 
-def calculate_surplus_data(sales_row):
-    """
-    Compare sales with stock and calculate the surplus for each item type.
-    The surplus is defined as the sales figure subtracted from the stock:
-    - Positive surplus indicates waste
-    - Negative surplus indicates extra made when stock was sold out.
-    """
-    print("Calculating surplus data...\n")
-    stock = SHEET.worksheet("stock").get_all_values()
-    stock_row = stock[-1]
-    print(stock_row)
+    win.addch(snake[0][0], snake[0][1], '*')
 
-
-def main():
-    """
-    Run all program functions
-    """
-    data = get_sales_data()
-    sales_data = [int(num) for num in data]
-    update_sales_worksheet(sales_data)
-
-
-print("Welcome to Love Sandwiches Data Automation")
-main()
+curses.endwin()
+print(f"Final score = {score}")
