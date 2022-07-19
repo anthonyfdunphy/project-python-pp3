@@ -84,5 +84,5 @@ I will attached a screenshot here and show the final performance score of the we
 
 ## Credits
 
-Attaching any links to videos or books with code which helped me develop this project.
+Attaching any links to videos or books with code which helped me develop this project. I will be adding video to link below to demonstate this.
 
