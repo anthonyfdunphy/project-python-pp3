@@ -1,5 +1,9 @@
-import curses 
+import curses
 from random import randint
+import colorama
+from colorama import Fore, Back, Style
+
+colorama.init()
 
 #constants
 
@@ -84,3 +88,4 @@ while key != ESC:
 
 curses.endwin()
 print(f"Final score = {score}")
+print(Fore.RED + 'RED TEXT')
