@@ -21,7 +21,6 @@ curses.initscr()
 win = curses.newwin(WINDOW_HEIGHT, WINDOW_WIDTH, 0, 0) # rows, columns
 win.keypad(1)
 curses.noecho()
-curses.init_pair(1, curses.COLOR_BLUE, curses.COLOR_YELLOW)
 curses.curs_set(0)
 win.border(0)
 win.nodelay(1) # -1
@@ -39,7 +38,7 @@ key = curses.KEY_RIGHT
 
 while key != ESC:
 
-    win.addstr(0, 2, 'Score ' + str(score) + ' ', curses.color_pair(1))
+    win.addstr(0, 2, 'Score ' + str(score) + ' ')
     win.timeout(150 - (len(snake)) // 5 + len(snake)//10 % 120) # increase speed
 
     prev_key = key
