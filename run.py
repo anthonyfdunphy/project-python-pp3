@@ -46,6 +46,8 @@ while key != ESC:
 
     win.timeout(150 - (len(snake)) // 5 + len(snake) // 10 % 120)  # increase speed
 
+    win.bkgd(' ', curses.color_pair(1) | curses.A_BOLD)
+
     prev_key = key
     event = win.getch()
     key = event if event != -1 else prev_key
@@ -104,5 +106,19 @@ while key != ESC:
     win.addch(snake[0][0], snake[0][1], "*")
 
 curses.endwin()
+
+print()
+print("################################")
+print("#                              #")
+print("#                              #")
+print("#      ******************      #")
+print("#      ******************      #")
+print("#      ****GAME OVER*****      #")
+print("#      ******************      #")
+print("#      ******************      #")
+print("#      ******************      #")
+print("#                              #")
 print(f"Final score = {score}")
-# print(Fore.str(gameColor) + str(gameColor))
+print("#                              #")
+print("################################")
+print()
