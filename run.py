@@ -18,6 +18,7 @@ Block y index ranges from 1 to WINDOW_HEIGHT -2.
 
 # setup window
 curses.initscr()
+curses.start_color()
 win = curses.newwin(WINDOW_HEIGHT, WINDOW_WIDTH, 0, 0)  # rows, columns
 win.keypad(1)
 curses.noecho()
@@ -36,9 +37,13 @@ score = 0
 ESC = 27
 key = curses.KEY_RIGHT
 
-while key != ESC:
+gameColor = "RED"
 
-    win.addstr(0, 2, "Score " + str(score) + " ")
+while key != ESC:
+    curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_RED)
+
+    win.addstr(0, 2, "Score " + str(score) + " ", curses.color_pair(1))
+
     win.timeout(150 - (len(snake)) // 5 + len(snake) // 10 % 120)  # increase speed
 
     prev_key = key
@@ -100,4 +105,4 @@ while key != ESC:
 
 curses.endwin()
 print(f"Final score = {score}")
-print(Fore.RED + "RED TEXT")
+# print(Fore.str(gameColor) + str(gameColor))
