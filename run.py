@@ -40,13 +40,14 @@ key = curses.KEY_RIGHT
 gameColor = "RED"
 
 while key != ESC:
-    curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_RED)
+    curses.init_pair(1, curses.COLOR_RED, curses.COLOR_GREEN)
+    curses.init_pair(2, curses.COLOR_YELLOW, curses.COLOR_BLACK)
 
-    win.addstr(0, 2, "Score " + str(score) + " ", curses.color_pair(1))
+    win.addstr(0, 2, "Score " + str(score) + " ")
 
     win.timeout(150 - (len(snake)) // 5 + len(snake) // 10 % 120)  # increase speed
 
-    win.bkgd(' ', curses.color_pair(1) | curses.A_BOLD)
+    # win.bkgd(' ', curses.color_pair(1) | curses.A_BOLD)
 
     prev_key = key
     event = win.getch()
@@ -98,8 +99,10 @@ while key != ESC:
             if food in snake:
                 food = ()
         win.addch(food[0], food[1], "#")
+        win.bkgd(' ', curses.color_pair(1) | curses.A_BOLD)
     else:
         # move snake
+        win.bkgd(' ', curses.color_pair(2) | curses.A_BOLD)
         last = snake.pop()
         win.addch(last[0], last[1], " ")
 
@@ -118,7 +121,7 @@ print("#      ******************      #")
 print("#      ******************      #")
 print("#      ******************      #")
 print("#                              #")
-print(f"Final score = {score}")
+print(f"#        Final score = {score}       #")
 print("#                              #")
 print("################################")
 print()
