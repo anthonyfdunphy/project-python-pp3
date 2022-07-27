@@ -42,6 +42,7 @@ gameColor = "RED"
 while key != ESC:
     curses.init_pair(1, curses.COLOR_RED, curses.COLOR_GREEN)
     curses.init_pair(2, curses.COLOR_YELLOW, curses.COLOR_BLACK)
+    curses.init_pair(3, curses.COLOR_BLACK, curses.COLOR_RED)
 
     win.addstr(0, 2, "Score " + str(score) + " ")
 
@@ -110,18 +111,14 @@ while key != ESC:
 
 curses.endwin()
 
-print()
-print("################################")
-print("#                              #")
-print("#                              #")
-print("#      ******************      #")
-print("#      ******************      #")
-print("#      ****GAME OVER*****      #")
-print("#      ******************      #")
-print("#      ******************      #")
-print("#      ******************      #")
-print("#                              #")
-print(f"#        Final score = {score}       #")
-print("#                              #")
-print("################################")
-print()
+
+print(fr"""{Back.RED}
+   _____                         ____
+  / ____|                       / __ \
+ | |  __  __ _ _ __ ___   ___  | |  | |_   _____ _ __
+ | | |_ |/ _` | '_ ` _ \ / _ \ | |  | \ \ / / _ \ '__|
+ | |__| | (_| | | | | | |  __/ | |__| |\ V /  __/ |
+  \_____|\__,_|_| |_| |_|\___|  \____/  \_/ \___|_|
+    """)
+
+print(f"##### Final score = {score} #####")
