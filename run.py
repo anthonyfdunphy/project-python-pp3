@@ -22,7 +22,7 @@ curses.start_color()
 win = curses.newwin(WINDOW_HEIGHT, WINDOW_WIDTH, 0, 0)  # rows, columns
 win.keypad(1)
 curses.noecho()
-# curses.curs_set(0)
+curses.curs_set(1)
 win.border(0)
 win.nodelay(1)  # -1
 
@@ -38,6 +38,9 @@ ESC = 27
 key = curses.KEY_RIGHT
 
 gameColor = "RED"
+
+game_finished = None
+
 
 def start_game():
     curses.init_pair(1, curses.COLOR_RED, curses.COLOR_GREEN)
@@ -80,16 +83,21 @@ def start_game():
 
     # check if we hit the border
     if y == 0:
+        print("HIT 1")
         game_over()
     if y == WINDOW_HEIGHT - 1:
+        print("HIT 2")
         game_over()
     if x == 0:
+        print("HIT 3")
         game_over()
     if x == WINDOW_WIDTH - 1:
+        print("HIT 4")
         game_over()
 
     # if snake runs over itself
     if snake[0] in snake[1:]:
+        print("HIT 5")
         game_over()
 
     global food
@@ -102,19 +110,25 @@ def start_game():
             if food in snake:
                 food = ()
         win.addch(food[0], food[1], "#")
-        win.bkgd(' ', curses.color_pair(1) | curses.A_BOLD)
+        win.bkgd(" ", curses.color_pair(1) | curses.A_BOLD)
     else:
         # move snake
-        win.bkgd(' ', curses.color_pair(2) | curses.A_BOLD)
+        win.bkgd(" ", curses.color_pair(2) | curses.A_BOLD)
         last = snake.pop()
         win.addch(last[0], last[1], " ")
 
     win.addch(snake[0][0], snake[0][1], "*")
 
-    curses.endwin()
+curses.endwin()
 
 
 def game_over():
+    curses.endwin()
+    global game_finished
+    game_finished = True
+
+    # print("HELLO THIS IS THE GAME OVER")
+    
 
     print()
     print(Back.RED + "################################")
@@ -140,27 +154,27 @@ def game_over():
     print(" ")
     print(" ")
 
-    i = 0
-    while i < 2:
-        answer = input("##### DO YOU WISH TO PLAY AGAIN? YES OR NO? ##### \n\n")
-        print(" ")
-        print(" ")
-        if any(answer.lower() == f for f in ["yes", 'y', '1', 'ye']):
-            print("Yes :)")
-            start_game()
-            break
-        elif any(answer.lower() == f for f in ['no', 'n', '0']):
-            print("No :( ")
-            break
-        else:
-            i += 1
-            if i < 2:
-                print('Please enter yes or no')
-            else:
-                print("Nothing done")
+    # i = 0
+    # while i < 2:
+    #     answer = input("##### DO YOU WISH TO PLAY AGAIN? YES OR NO? ##### \n\n")
+    #     print(" ")
+    #     print(" ")
+    #     if any(answer.lower() == f for f in ["yes", "y", "1", "ye"]):
+    #         print("Yes :)")
+    #         start_game()
+    #         break
+    #     elif any(answer.lower() == f for f in ["no", "n", "0"]):
+    #         print("No :( ")
+    #         break
+    #     else:
+    #         i += 1
+    #         if i < 2:
+    #             print("Please enter yes or no")
+    #         else:
+    #             print("Nothing done")
 
 
 while key != ESC:
-
-    start_game()
+    if not game_finished:
+        start_game()
 
