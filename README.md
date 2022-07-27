@@ -1,34 +1,3 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
-
-Welcome anthonyfdunphy,
-
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
-
-## Reminders
-
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
------
-
 # Snake Game
 
 This is my creation of the famous snake game, popularised by the Nokia mobile phone version. This version runs in the terminal which has been deploed on Heroku.
@@ -72,6 +41,29 @@ Frameworks and Libraries Used
 * I used Heroku to deploy the live version.
 * I used GitHub which allowed me to store my repository.
 * My primary IDE was Gitpod which I used for creating and programming as I had unlimited hours through the Code Institute.
+
+## Deployment
+
+The project has been deployed to Heroku and can be found [here](https://snakegamead.herokuapp.com/) 
+
+The Project repository (repo) is at https://github.com/davewatters/pwnytrap-ci-pp3
+
+Note: The project repo was initially generated from the Code Institute Python Essentials template
+
+Deployment of the site to Heroku was done as follows:
+
+* Login to your Heroku account
+* Create a New App
+* Select the 'Settings' tab first
+* Click on 'Reveal Config Vars'
+* Add config vars in the KEY/VALUE pair data section
+* Select 'Add Buildpack' - add Python and NodeJS
+* Select the 'Deploy' tab
+* For the Deplyoment Method select GitHub
+* Connect to GitHub repo by entering YOUR-REPO-NAME, then Connect
+* A message will confirm that your app was successfuly deployed
+* Test that the site has successfully gone live by clicking on the 'View' button
+* Your app can now be accessed via any browser at: https://YOUR-APP-NAME.heroku.com
 
 ## Validator Testing
 
