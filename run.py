@@ -22,7 +22,7 @@ curses.start_color()
 win = curses.newwin(WINDOW_HEIGHT, WINDOW_WIDTH, 0, 0)  # rows, columns
 win.keypad(1)
 curses.noecho()
-curses.curs_set(1)
+# curses.curs_set(1)
 win.border(0)
 win.nodelay(1)  # -1
 
@@ -83,21 +83,16 @@ def start_game():
 
     # check if we hit the border
     if y == 0:
-        print("HIT 1")
         game_over()
     if y == WINDOW_HEIGHT - 1:
-        print("HIT 2")
         game_over()
     if x == 0:
-        print("HIT 3")
         game_over()
     if x == WINDOW_WIDTH - 1:
-        print("HIT 4")
         game_over()
 
     # if snake runs over itself
     if snake[0] in snake[1:]:
-        print("HIT 5")
         game_over()
 
     global food
