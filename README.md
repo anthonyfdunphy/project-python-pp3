@@ -33,7 +33,8 @@ The deployment terminal is set to 80 columns by 24 rows. That means that each li
 
 This is my creation of the famous snake game, popularised by the Nokia mobile phone version. This version runs in the terminal which has been deploed on Heroku.
 
-[Photograph of game]
+
+![snake-game](https://i.imgur.com/D10H8Mw.png)
 
 ## User experiences
 
