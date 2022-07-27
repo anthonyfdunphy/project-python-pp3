@@ -46,9 +46,7 @@ Frameworks and Libraries Used
 
 The project has been deployed to Heroku and can be found [here](https://snakegamead.herokuapp.com/) 
 
-The Project repository (repo) is at https://github.com/davewatters/pwnytrap-ci-pp3
-
-Note: The project repo was initially generated from the Code Institute Python Essentials template
+The Github repo can be found at the following [link](https://github.com/anthonyfdunphy/project-python-pp3)
 
 Deployment of the site to Heroku was done as follows:
 
