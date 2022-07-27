@@ -156,6 +156,7 @@ def game_over():
         print(" ")
         if any(answer.lower() == f for f in ["yes", "y", "1", "ye"]):
             print("Yes :)")
+            start_game()
             break
         elif any(answer.lower() == f for f in ["no", "n", "0"]):
             print("No :( ")
