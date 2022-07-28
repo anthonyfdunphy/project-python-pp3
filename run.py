@@ -129,11 +129,11 @@ def start_game():
     win.addch(snake[0][0], snake[0][1], "*")
 
 
-curses.endwin()
-
-
 def reset_snake():
     snake.clear()
+
+
+curses.endwin()
 
 
 def game_over():
@@ -175,8 +175,6 @@ def game_over():
         if any(answer.lower() == f for f in ["yes", "y", "1", "ye"]):
             print("Yes :)")
             reset_snake()
-            print(snake)
-            # curses.endwin()
             init_values()
             break
         elif any(answer.lower() == f for f in ["no", "n", "0"]):
@@ -188,6 +186,7 @@ def game_over():
                 print("Please enter yes or no")
             else:
                 print("Nothing done")   
+
 
 
 while key != ESC:
