@@ -73,7 +73,7 @@ To deploy my site to Heroku - the following was done:
 
 To ensure that the code adhered to the Python style guidelines, I used the online tool - The PEP8 Online linter. I got the follow result when I submitted my code for validation.
 
-![code-validation](https://miro.medium.com/max/1400/0*8aY8pX5CoNGImZU4.png)
+![code-validation](https://i.imgur.com/hFBVVFA.png)
 
 ## Credits
 
