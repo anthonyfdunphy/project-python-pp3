@@ -157,7 +157,7 @@ def game_over():
         print(" ")
         if any(answer.lower() == f for f in ["yes", "y", "1", "ye"]):
             print("Yes :)")
-            start_game()
+            game_finished = None
             break
         elif any(answer.lower() == f for f in ["no", "n", "0"]):
             print("No :( ")
@@ -167,9 +167,10 @@ def game_over():
             if i < 2:
                 print("Please enter yes or no")
             else:
-                print("Nothing done")
+                print("Nothing done")     
 
 
 while key != ESC:
     if not game_finished:
         start_game()
+        
