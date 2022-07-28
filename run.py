@@ -48,7 +48,7 @@ def start_game():
     curses.init_pair(3, curses.COLOR_BLACK, curses.COLOR_RED)
 
     global score
-    win.addstr(0, 2, "Score " + str(score) + " ")
+    win.addstr(0, 2, "Score " + str(score) + " " + " \ \  USE ARROW KEYS")
 
     win.timeout(150 - (len(snake)) // 5 + len(snake) // 10 % 120)
 
