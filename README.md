@@ -77,5 +77,5 @@ To ensure that the code adhered to the Python style guidelines, I used the onlin
 
 ## Credits
 
-Attaching any links to videos or books with code which helped me develop this project. I will be adding video to link below to demonstate this.
+The basis of the game development was inspired by the following [video](https://www.youtube.com/watch?v=M_npdRYD4K0&ab_channel=PythonEngineer) and [github page](https://gist.github.com/sanchitgangwar/2158089). From the understanding of this, I built upon what I learned with Code Institute and created my own modifications to the game logic.
 
