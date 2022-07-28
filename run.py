@@ -167,7 +167,7 @@ def game_over():
             if i < 2:
                 print("Please enter yes or no")
             else:
-                print("Nothing done")     
+                print("Nothing done")   
 
 
 while key != ESC:
