@@ -10,12 +10,13 @@ This is my creation of the famous snake game, popularised by the Nokia mobile ph
 
 * As a user I want the instructions to be intuitive.
 * As a user I want to be given cues on how I am doing.
-* As a user I want to be able to restart the game if I am having a bad run.
 * As a user I want text that is easy to see
 
 ### Fulfilment of user stories
 
 * A prompt is written at the top of the screen for users to use the arrow keys
+* The user is given cues to how they are doing with the score at the top of the screen
+* The text is quite striking as it uses a black background on a yellow border/character which is easy for the user to see what moving on the screen
 
 ![prompt](https://i.imgur.com/kJlifu1.png)
 
