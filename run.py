@@ -26,20 +26,34 @@ curses.noecho()
 win.border(0)
 win.nodelay(1)  # -1
 
-# snake and food
-snake = [(4, 4), (4, 3), (4, 2)]
-food = (6, 6)
-
-win.addch(food[0], food[1], "#")
-# game logic
-score = 0
 
 ESC = 27
 key = curses.KEY_RIGHT
 
-gameColor = "RED"
 
-game_finished = None
+def init_values():
+    init = curses.initscr()
+    # snake and food
+    global snake
+    snake = [[4, 4], [4, 3], [4, 2]]
+    global food
+    food = (6, 6)
+
+    win.addch(food[0], food[1], "#")
+    # game logic
+    global score
+    score = 0
+
+    global gameColor
+    gameColor = "RED"
+
+    global game_finished
+    game_finished = None
+    init.clear()
+    curses.endwin()
+
+
+init_values()
 
 
 def start_game():
@@ -157,7 +171,9 @@ def game_over():
         print(" ")
         if any(answer.lower() == f for f in ["yes", "y", "1", "ye"]):
             print("Yes :)")
-            game_finished = None
+            snake.clear()
+            curses.endwin()
+            init_values()
             break
         elif any(answer.lower() == f for f in ["no", "n", "0"]):
             print("No :( ")
@@ -172,5 +188,4 @@ def game_over():
 
 while key != ESC:
     if not game_finished:
-        start_game()
-        
+        start_game()     
