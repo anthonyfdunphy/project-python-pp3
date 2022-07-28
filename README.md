@@ -15,9 +15,9 @@ This is my creation of the famous snake game, popularised by the Nokia mobile ph
 
 ### Fulfilment of user stories
 
-Examples placed here with screenshots
+* A prompt is written at the top of the screen for users to use the arrow keys
 
-![holding-image](https://miro.medium.com/max/1400/0*8aY8pX5CoNGImZU4.png)
+![prompt](https://miro.medium.com/max/1400/0*8aY8pX5CoNGImZU4.png)
 
 ----------------------
 ### Flowchat / Wireframes
