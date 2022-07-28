@@ -1,7 +1,6 @@
 # Snake Game
 
-This is my creation of the famous snake game, popularised by the Nokia mobile phone version. This version runs in the terminal which has been deploed on Heroku.
-
+This is my creation of the famous snake game, popularised by the Nokia mobile phone version. This version runs in the terminal which has been deploed on Heroku. This game was created as a part of Portfolio Project 3 (PP3) for the Code Institute's Full Stack Web Development course. This project was created to share and showcase Python skills and to utilise the Heroku platform for deployment. Initally, the Code Institute template is used to create a base for a mock terminal app which I then modified with my own code.
 
 ![snake-game](https://i.imgur.com/D10H8Mw.png)
 
@@ -25,7 +24,7 @@ Examples placed here with screenshots
 
 This is a terminal operated game so there are not as many UX/UI options as previous projects. The terminal style favours this snake game design best I feel as it give the user a 'retro' feel to how the game is.
 
-![holding-image](https://miro.medium.com/max/1400/0*8aY8pX5CoNGImZU4.png)
+![holding-image](https://i.imgur.com/PuHlcAk.png)
 
 ## How to play
 
