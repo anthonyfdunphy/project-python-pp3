@@ -10,9 +10,9 @@ colorama.init()
 WINDOW_WIDTH = 60  # number of columns of window box
 WINDOW_HEIGHT = 20  # number of rows of window box
 """
-Number of blocks in window per line = WINDOW_WIDTH -2. 
+Number of blocks in window per line = WINDOW_WIDTH -2.
 Block x index ranges from 1 to WINDOW_WIDTH -2.
-Number of blocks in window per column = WINDOW_HEIGHT -2. 
+Number of blocks in window per column = WINDOW_HEIGHT -2.
 Block y index ranges from 1 to WINDOW_HEIGHT -2.
 """
 
@@ -50,7 +50,7 @@ def start_game():
     global score
     win.addstr(0, 2, "Score " + str(score) + " ")
 
-    win.timeout(150 - (len(snake)) // 5 + len(snake) // 10 % 120)  # increase speed
+    win.timeout(150 - (len(snake)) // 5 + len(snake) // 10 % 120)
 
     # win.bkgd(' ', curses.color_pair(1) | curses.A_BOLD)
     global key
@@ -101,7 +101,8 @@ def start_game():
         score += 1
         food = ()
         while food == ():
-            food = (randint(1, WINDOW_HEIGHT - 2), randint(1, WINDOW_WIDTH - 2))
+            food = (randint(1, WINDOW_HEIGHT - 2),
+                    randint(1, WINDOW_WIDTH - 2))
             if food in snake:
                 food = ()
         win.addch(food[0], food[1], "#")
@@ -114,6 +115,7 @@ def start_game():
 
     win.addch(snake[0][0], snake[0][1], "*")
 
+
 curses.endwin()
 
 
@@ -123,7 +125,6 @@ def game_over():
     game_finished = True
 
     # print("HELLO THIS IS THE GAME OVER")
-    
 
     print()
     print(Back.RED + "################################")
@@ -151,7 +152,7 @@ def game_over():
 
     i = 0
     while i < 2:
-        answer = input("##### DO YOU WISH TO PLAY AGAIN? YES OR NO? ##### \n\n")
+        answer = input("## DO YOU WISH TO PLAY AGAIN? YES OR NO? ## \n\n")
         print(" ")
         print(" ")
         if any(answer.lower() == f for f in ["yes", "y", "1", "ye"]):
@@ -172,4 +173,3 @@ def game_over():
 while key != ESC:
     if not game_finished:
         start_game()
-
