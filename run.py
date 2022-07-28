@@ -55,7 +55,6 @@ def init_values():
 
 init_values()
 
-
 def start_game():
     curses.init_pair(1, curses.COLOR_RED, curses.COLOR_GREEN)
     curses.init_pair(2, curses.COLOR_YELLOW, curses.COLOR_BLACK)
@@ -133,6 +132,10 @@ def start_game():
 curses.endwin()
 
 
+def reset_snake():
+    snake.clear()
+
+
 def game_over():
     curses.endwin()
     global game_finished
@@ -171,12 +174,13 @@ def game_over():
         print(" ")
         if any(answer.lower() == f for f in ["yes", "y", "1", "ye"]):
             print("Yes :)")
-            snake.clear()
-            curses.endwin()
+            reset_snake()
+            print(snake)
+            # curses.endwin()
             init_values()
             break
         elif any(answer.lower() == f for f in ["no", "n", "0"]):
-            print("No :( ")
+            print("**********GAME OVER**********!!!!!!")
             break
         else:
             i += 1
@@ -188,4 +192,4 @@ def game_over():
 
 while key != ESC:
     if not game_finished:
-        start_game()     
+        start_game()
