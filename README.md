@@ -22,13 +22,12 @@ Examples placed here with screenshots
 ----------------------
 ### Flowchat / Wireframes
 
-This is a terminal operated game so there are not as many UX/UI options as previous projects. The terminal style favours this snake game design best I feel as it give the user a 'retro' feel to how the game is.
+This is a terminal operated game so there are not as many UX/UI options as previous projects. The terminal style favours this snake game design best I feel as it give the user a 'retro' feel to how the game is. Below is a basic flow chart of the logic of the snake game. The game begins on load of the page, the user then uses the cursor arrows to move the direction of the snake toward the food or away from the border. If the user hits the border or hits itself, the game ends and the users score is revealed to them. They are then prompted to see if they wish to play again, if they select yes then the game begins again.
 
 ![holding-image](https://i.imgur.com/PuHlcAk.png)
 
-## How to play
+When creating this game, I spoke with my mentor and the suggestion was made to liven up the game interface by added color to it. The game has a black background with a yellow border. When the user eats the food, the background of the game becomes green momentarily to give the user some visual feedback that they are progressing in the game. Here are example photos of the game interface with color:
 
-The user has the option of using the arrow keys to move the snake around the terminals  placeholder text etc.etc.etc.
 
 ## Technologies Used
 
