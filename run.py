@@ -1,31 +1,23 @@
 import curses
-from curses import wrapper
 from random import randint
 import colorama
 from colorama import Fore, Back, Style
 
 colorama.init()
 
-# constants
+# window width and height
 
 WINDOW_WIDTH = 60  # number of columns of window box
 WINDOW_HEIGHT = 20  # number of rows of window box
-"""
-Number of blocks in window per line = WINDOW_WIDTH -2.
-Block x index ranges from 1 to WINDOW_WIDTH -2.
-Number of blocks in window per column = WINDOW_HEIGHT -2.
-Block y index ranges from 1 to WINDOW_HEIGHT -2.
-"""
 
-# setup window
+# window setup
 curses.initscr()
 curses.start_color()
 win = curses.newwin(WINDOW_HEIGHT, WINDOW_WIDTH, 0, 0)  # rows, columns
 win.keypad(1)
 curses.noecho()
-# curses.curs_set(1)
 win.border(0)
-win.nodelay(1)  # -1
+win.nodelay(1)
 
 ESC = 27
 key = curses.KEY_RIGHT
@@ -56,6 +48,7 @@ def init_values():
 
 init_values()
 
+
 def start_game():
     curses.init_pair(1, curses.COLOR_RED, curses.COLOR_GREEN)
     curses.init_pair(2, curses.COLOR_YELLOW, curses.COLOR_BLACK)
@@ -66,7 +59,6 @@ def start_game():
 
     win.timeout(150 - (len(snake)) // 5 + len(snake) // 10 % 120)
 
-    # win.bkgd(' ', curses.color_pair(1) | curses.A_BOLD)
     global key
     prev_key = key
     event = win.getch()
@@ -81,7 +73,7 @@ def start_game():
     ]:
         key = prev_key
 
-    # calculate the next coordinates
+    # next coordinates for snake
     y = snake[0][0]
     x = snake[0][1]
     if key == curses.KEY_DOWN:
@@ -93,9 +85,9 @@ def start_game():
     if key == curses.KEY_RIGHT:
         x += 1
 
-    snake.insert(0, (y, x))  # append O(n)
+    snake.insert(0, (y, x))
 
-    # check if we hit the border
+    # checking if border is hit
     if y == 0:
         game_over()
     if y == WINDOW_HEIGHT - 1:
@@ -105,13 +97,13 @@ def start_game():
     if x == WINDOW_WIDTH - 1:
         game_over()
 
-    # if snake runs over itself
+    # checking if snake runs over itself
     if snake[0] in snake[1:]:
         game_over()
 
     global food
     if snake[0] == food:
-        # eat the food
+        # food eaten
         score += 1
         food = ()
         while food == ():
@@ -122,7 +114,7 @@ def start_game():
         win.addch(food[0], food[1], "#")
         win.bkgd(" ", curses.color_pair(1) | curses.A_BOLD)
     else:
-        # move snake
+        # moving snake
         win.bkgd(" ", curses.color_pair(2) | curses.A_BOLD)
         last = snake.pop()
         win.addch(last[0], last[1], " ")
@@ -141,8 +133,6 @@ def game_over():
     curses.endwin()
     global game_finished
     game_finished = True
-
-    # print("HELLO THIS IS THE GAME OVER")
 
     print()
     print(Back.RED + "################################")
@@ -186,7 +176,7 @@ def game_over():
             if i < 2:
                 print("Please enter yes or no")
             else:
-                print("Nothing done")   
+                print("Nothing done")
 
 
 while key != ESC:
