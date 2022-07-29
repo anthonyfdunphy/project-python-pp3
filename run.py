@@ -1,4 +1,5 @@
 import curses
+from curses import wrapper
 from random import randint
 import colorama
 from colorama import Fore, Back, Style
@@ -26,13 +27,14 @@ curses.noecho()
 win.border(0)
 win.nodelay(1)  # -1
 
-
 ESC = 27
 key = curses.KEY_RIGHT
 
 
 def init_values():
-    init = curses.initscr()
+    win.clear()
+    win.refresh()
+    win.border(0)
     # snake and food
     global snake
     snake = [[4, 4], [4, 3], [4, 2]]
@@ -49,7 +51,6 @@ def init_values():
 
     global game_finished
     game_finished = None
-    init.clear()
     curses.endwin()
 
 
@@ -186,7 +187,6 @@ def game_over():
                 print("Please enter yes or no")
             else:
                 print("Nothing done")   
-
 
 
 while key != ESC:
